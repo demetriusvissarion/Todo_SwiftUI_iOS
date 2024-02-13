@@ -1,17 +1,15 @@
 {
   "images" : [
     {
-      "filename" : "bg-image.jpg",
+      "filename" : "backgroundImage1.jpg",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "bg-image2.jpg",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "bg-image3.jpg",
       "idiom" : "universal",
       "scale" : "3x"
     }
