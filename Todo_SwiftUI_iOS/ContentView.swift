@@ -8,6 +8,14 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State var timesBeingTapped = 0
+    @State private var petName = ""
+    @State private var isToggle1On: Bool = false
+    @State private var isToggle2On: Bool = false
+    @State private var isToggle3On: Bool = false
+    @State private var isToggle4On: Bool = false
+    @State private var isToggle5On: Bool = false
+    
     var body: some View {
         VStack {
             Image("backgroundImage")
@@ -25,17 +33,36 @@ struct ContentView: View {
             }
 
             VStack {
-                Text("Todo 1")
-                Text("Todo 2")
-                Text("Todo 3")
-                Text("Todo 4")
-                Text("Todo 5")
+                Toggle(isOn: $isToggle1On) {
+                    Text("Todo 1")
+                }
+                Toggle(isOn: $isToggle2On) {
+                    Text("Todo 2")
+                }
+                Toggle(isOn: $isToggle3On) {
+                    Text("Todo 3")
+                }
+                Toggle(isOn: $isToggle4On) {
+                    Text("Todo 4")
+                }
+                Toggle(isOn: $isToggle5On) {
+                    Text("Todo 5")
+                }
             }
             .foregroundColor(.black)
         }
         .padding()
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(Color.white)
+        
+        Button("Times tapped: \(timesBeingTapped)") {
+            timesBeingTapped += 1
+        }
+        
+        Form {
+            TextField("Enter your pet's name", text: $petName)
+            Text("Hello, \(petName)!")
+        }
     }
 }
 
