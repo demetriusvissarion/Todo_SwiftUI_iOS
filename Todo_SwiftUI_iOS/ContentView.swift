@@ -8,16 +8,14 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State private var todo1 = ""
-    @State private var todo2 = "Todo 2"
-    @State private var todo3 = "Todo 3"
-    @State private var todo4 = "Todo 4"
-    @State private var todo5 = "Todo 5"
-    @State private var isToggle1On: Bool = true
-    @State private var isToggle2On: Bool = true
-    @State private var isToggle3On: Bool = true
-    @State private var isToggle4On: Bool = true
-    @State private var isToggle5On: Bool = true
+    @State private var todos = ["Walk the dog", "Do the dishes", "Pass the vacuum", "Take out the rubbish", "Go grocery shopping"]
+    @State private var toggles = [true, true, true, true, true] {
+        didSet {
+            updateProgress()
+        }
+    }
+    @State private var newTodo = ""
+    @State private var progress: Double = 0
 
     var body: some View {
         NavigationView {
@@ -26,6 +24,9 @@ struct ContentView: View {
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .frame(width: 350, height: 250)
+                
+                ProgressView("Todo Completion", value: progress, total: 1.0)
+                                    .padding()
                 
                 HStack {
                     Text("Todos!")
@@ -40,35 +41,29 @@ struct ContentView: View {
                 .padding(.horizontal)
                 
                 Form {
-                    HStack {
-                        NavigationLink(destination: TodoDisplayView(viewModel: TodoViewModel(), todo: todo1)) {
-                            TextField("Untitled", text: $todo1)
+                    ForEach($todos.indices, id: \.self) { index in
+                        HStack {
+                            NavigationLink(destination: TodoDisplayView(viewModel: TodoViewModel(), todo: todos[index])) {
+                                TextField("Untitled", text: $todos[index])
+                                Toggle("", isOn: $toggles[index])
+                                    .onChange(of: toggles[index]) { _ in
+                                        updateProgress()
+                                    }
+                            }
                         }
-                        Toggle("", isOn: $isToggle1On)
                     }
+                    .onDelete(perform: deleteTodo)
+                    
                     HStack {
-                        NavigationLink(destination: TodoDisplayView(viewModel: TodoViewModel(), todo: todo2)) {
-                            TextField("Untitled", text: $todo2)
+                        TextField("Add new todo...", text: $newTodo, onCommit: {
+                            addNewTodo()
+                        })
+                        .foregroundColor(.gray)
+                        
+                        Button(action: addNewTodo) {
+                            Image(systemName: "plus.circle.fill")
+                                .foregroundColor(.green)
                         }
-                        Toggle("", isOn: $isToggle2On)
-                    }
-                    HStack {
-                        NavigationLink(destination: TodoDisplayView(viewModel: TodoViewModel(), todo: todo3)) {
-                            TextField("Untitled", text: $todo3)
-                        }
-                        Toggle("", isOn: $isToggle3On)
-                    }
-                    HStack {
-                        NavigationLink(destination: TodoDisplayView(viewModel: TodoViewModel(), todo: todo4)) {
-                            TextField("Untitled", text: $todo4)
-                        }
-                        Toggle("", isOn: $isToggle4On)
-                    }
-                    HStack {
-                        NavigationLink(destination: TodoDisplayView(viewModel: TodoViewModel(), todo: todo5)) {
-                            TextField("Untitled", text: $todo5)
-                        }
-                        Toggle("", isOn: $isToggle5On)
                     }
                 }
                 .foregroundColor(.black)
@@ -76,6 +71,25 @@ struct ContentView: View {
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(Color.white)
+    }
+    
+    private func addNewTodo() {
+        guard !newTodo.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty else { return }
+        todos.append(newTodo)
+        toggles.append(true)
+        newTodo = ""
+    }
+    
+    private func deleteTodo(at offsets: IndexSet) {
+        todos.remove(atOffsets: offsets)
+        toggles.remove(atOffsets: offsets)
+        updateProgress()
+    }
+    
+    private func updateProgress() {
+        let total = Double(toggles.count)
+        let falseCount = Double(toggles.filter { !$0 }.count)
+        progress = falseCount / total
     }
 }
 
