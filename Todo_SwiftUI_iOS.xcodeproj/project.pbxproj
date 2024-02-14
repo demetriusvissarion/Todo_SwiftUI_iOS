@@ -14,6 +14,8 @@
 		1349AE5F2B7BBC0D00777844 /* Todo_SwiftUI_iOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1349AE5E2B7BBC0D00777844 /* Todo_SwiftUI_iOSTests.swift */; };
 		1349AE692B7BBC0D00777844 /* Todo_SwiftUI_iOSUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1349AE682B7BBC0D00777844 /* Todo_SwiftUI_iOSUITests.swift */; };
 		1349AE6B2B7BBC0D00777844 /* Todo_SwiftUI_iOSUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1349AE6A2B7BBC0D00777844 /* Todo_SwiftUI_iOSUITestsLaunchTests.swift */; };
+		1349AE7A2B7CC18B00777844 /* TodoDisplayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1349AE792B7CC18B00777844 /* TodoDisplayView.swift */; };
+		1349AE7C2B7CCF6C00777844 /* TodoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1349AE7B2B7CCF6C00777844 /* TodoViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +46,8 @@
 		1349AE642B7BBC0D00777844 /* Todo_SwiftUI_iOSUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Todo_SwiftUI_iOSUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1349AE682B7BBC0D00777844 /* Todo_SwiftUI_iOSUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Todo_SwiftUI_iOSUITests.swift; sourceTree = "<group>"; };
 		1349AE6A2B7BBC0D00777844 /* Todo_SwiftUI_iOSUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Todo_SwiftUI_iOSUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		1349AE792B7CC18B00777844 /* TodoDisplayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoDisplayView.swift; sourceTree = "<group>"; };
+		1349AE7B2B7CCF6C00777844 /* TodoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,6 +102,8 @@
 				1349AE4F2B7BBC0A00777844 /* ContentView.swift */,
 				1349AE512B7BBC0C00777844 /* Assets.xcassets */,
 				1349AE532B7BBC0C00777844 /* Preview Content */,
+				1349AE792B7CC18B00777844 /* TodoDisplayView.swift */,
+				1349AE7B2B7CCF6C00777844 /* TodoViewModel.swift */,
 			);
 			path = Todo_SwiftUI_iOS;
 			sourceTree = "<group>";
@@ -257,8 +263,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1349AE7C2B7CCF6C00777844 /* TodoViewModel.swift in Sources */,
 				1349AE502B7BBC0A00777844 /* ContentView.swift in Sources */,
 				1349AE4E2B7BBC0A00777844 /* Todo_SwiftUI_iOSApp.swift in Sources */,
+				1349AE7A2B7CC18B00777844 /* TodoDisplayView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
